@@ -1,19 +1,27 @@
-import "./App.css";
 import { useState } from "react";
+import * as S from "./App.styled.js";
 
 function App() {
-  const [deeplink, setDeeplink] = useState("");
+  const [deepLink, setDeepLink] = useState("");
+
+  const handleClick = () => {
+    window.location.href = deepLink;
+  };
+
   return (
-    <div className="App">
-      <div className="container">
-        <input
-          type="text"
-          value={deeplink}
-          onChange={(e) => setDeeplink(e.target.value)}
+    <S.Wrapper>
+      <S.Container>
+        <S.Input
+          placeholder="Informe o deeplink, Ex: minhaclaro://ClaroAppStoreDetail?appId=186"
+          value={deepLink}
+          onChange={(e) => setDeepLink(e.target.value)}
+          rows={7}
         />
-        <a href={deeplink}>Chamar deeplink</a>
-      </div>
-    </div>
+        <S.Button onClick={handleClick} disabled={!deepLink}>
+          Chamar deepLink
+        </S.Button>
+      </S.Container>
+    </S.Wrapper>
   );
 }
 
